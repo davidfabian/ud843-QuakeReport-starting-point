@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listview_quake"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/magnitude_text"
+        style="@style/quake_display"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/location_text"
+        style="@style/quake_display"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/time_text"
+        style="@style/quake_display"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
