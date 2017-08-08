@@ -33,6 +33,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
+
         Earthquake currentEarthquake = getItem(position);
 
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text);
@@ -43,6 +44,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time_text);
         timeTextView.setText(currentEarthquake.getmTime());
+
+        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text);
+        dateTextView.setText(currentEarthquake.getmDate());
+
     return listItemView;
     }
 }

@@ -8,17 +8,28 @@
     <TextView
         android:id="@+id/magnitude_text"
         style="@style/quake_display"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/location_text"
         style="@style/quake_display"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/time_text"
+    <LinearLayout
         style="@style/quake_display"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </LinearLayout>
+  </LinearLayout>
 

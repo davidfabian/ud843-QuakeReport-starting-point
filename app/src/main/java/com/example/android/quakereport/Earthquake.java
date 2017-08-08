@@ -38,8 +38,15 @@ public class Earthquake {
      * getter for time
      * @return formatted time data
      */
-    public String getmTime() {
+    public String getmDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM d, y");
+        return sdf.format(time);
+    }
+    public long getmTimeInMSeconds(){
+        return time;
+    }
+    public String getmTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
         return sdf.format(time);
     }
 }
