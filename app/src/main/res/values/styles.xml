@@ -22,14 +22,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 <style name="quake_display">
-    <item name="android:paddingLeft">12dp</item>
-    <item name="android:paddingTop">24dp</item>
-    <item name="android:paddingBottom">24dp</item>
+    <item name="android:paddingLeft">16dp</item>
+    <item name="android:paddingTop">16dp</item>
+    <item name="android:paddingBottom">16dp</item>
     <item name="android:textSize">16sp</item>
     <item name="android:gravity">left</item>
     <item name="android:layout_gravity">center_vertical</item>
     <item name="android:layout_width">0dp</item>
-    <item name="android:layout_weight">1</item>
     <item name="android:textColor">@color/black</item>
 </style>
 </resources>
