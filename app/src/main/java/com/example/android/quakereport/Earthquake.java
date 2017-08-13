@@ -11,11 +11,13 @@ public class Earthquake {
     private double magnitude;
     private String location;
     private long time;
+    private String webSite;
 //constructor for earthquake object.
-    public Earthquake(double mag, String loc, long tim) {
+    public Earthquake(double mag, String loc, long tim, String web) {
         magnitude = mag;
         location = loc;
         time = tim;
+        webSite =web;
     }
 
     /**
@@ -48,5 +50,8 @@ public class Earthquake {
     public String getmTime(){
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
         return sdf.format(time);
+    }
+    public String getmWebSite(){
+        return webSite;
     }
 }
