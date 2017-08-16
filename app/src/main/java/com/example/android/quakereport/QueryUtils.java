@@ -36,6 +36,8 @@ public final class QueryUtils {
     /**
      * Return a list of {@link Earthquake} objects that has been built up from
      * parsing a JSON response.
+     * TODO: extractearthquakes be a method with one parameter, the URL of USGS
+     * TODO: extractearthquakes start with a method to fetch the JSONRESPONSE from usgs. Http connection, data receiving, etc.
      */
     public static ArrayList<Earthquake> extractEarthquakes() {
 

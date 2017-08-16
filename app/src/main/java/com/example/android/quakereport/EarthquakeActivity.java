@@ -36,6 +36,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         setContentView(R.layout.earthquake_activity);
 
         ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
+/** TODO: from oncreate, remove everything, just leave a call to an asynctask
+ * TODO: create asynctask doinbackground method to retreive the data
+ * TODO: create onpostexecute to inflate the listview with the results from doinbackground
+ *
+ */
 
 
         EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, earthquakes);
