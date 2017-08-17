@@ -27,10 +27,12 @@ import android.widget.ListView;
 
 import java.util.List;
 
+//set up asynctask to pull data from the internet and populate a listview with the data
 public class EarthquakeActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
 
+    //executes asynctask to get online data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         getData.execute();
     }
 
+    //inflates the listview with the data from the USGS website
     private void inflater(List<Earthquake> earthquakes) {
         EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, earthquakes);
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
@@ -70,8 +73,9 @@ public class EarthquakeActivity extends AppCompatActivity {
         });
     }
 
+    //Asynctask to get data and display after it has received.
     private class dataGetter extends AsyncTask<Void, Void, List<Earthquake>> {
-
+        //the main online thread, result will be an earthquake list
         @Override
         protected List<Earthquake> doInBackground(Void... voids) {
             List<Earthquake> results = QueryUtils.extractEarthquakes();
@@ -80,6 +84,7 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         }
 
+        //after received the earthquake list, inflate the listview
         @Override
         protected void onPostExecute(List<Earthquake> earthquakes) {
             super.onPostExecute(earthquakes);
@@ -89,6 +94,4 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         }
     }
-
-
 }

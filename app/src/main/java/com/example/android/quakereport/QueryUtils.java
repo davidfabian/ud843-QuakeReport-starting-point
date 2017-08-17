@@ -26,7 +26,7 @@ import static com.example.android.quakereport.EarthquakeActivity.LOG_TAG;
 public final class QueryUtils {
 
     //modify this according to API documentation for different results
-    private static final String USGS_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=3&limit=10";
+    private static final String USGS_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
     //JSON_RESPONSE static to used through the class
     private static String JSON_RESPONSE = "";
 

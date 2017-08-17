@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- * Created by d on 8/7/2017.
+ * adapter for to connect earthquakes to the listadapter.
  */
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
@@ -38,7 +38,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         }
         //get the current earthquake item
         final Earthquake currentEarthquake = getItem(position);
-
 
 
         //fetch magnitude textview
@@ -91,12 +90,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     /**
      * magnitude-color matcher
+     *
      * @param mag a Double for magnitude
      * @return
      */
     private int getMagnitudeColor(Double mag) {
         int backgroundColor;
-        switch (mag.intValue()){
+        switch (mag.intValue()) {
             case 0:
             case 1:
                 backgroundColor = R.color.magnitude1;
