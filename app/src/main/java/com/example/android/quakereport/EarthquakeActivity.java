@@ -17,14 +17,15 @@ package com.example.android.quakereport;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
@@ -35,14 +36,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
-/** TODO: from oncreate, remove everything, just leave a call to an asynctask
- * TODO: create asynctask doinbackground method to retreive the data
- * TODO: create onpostexecute to inflate the listview with the results from doinbackground
- *
- */
+        dataGetter getData = new dataGetter();
+        getData.execute();
+    }
 
-
+    private void inflater(List<Earthquake> earthquakes) {
         EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, earthquakes);
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
         earthquakeListView.setAdapter(earthquakeAdapter);
@@ -71,4 +69,26 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
     }
+
+    private class dataGetter extends AsyncTask<Void, Void, List<Earthquake>> {
+
+        @Override
+        protected List<Earthquake> doInBackground(Void... voids) {
+            List<Earthquake> results = QueryUtils.extractEarthquakes();
+            Log.i(LOG_TAG, "earthquakelist: " + results.size());
+            return results;
+
+        }
+
+        @Override
+        protected void onPostExecute(List<Earthquake> earthquakes) {
+            super.onPostExecute(earthquakes);
+            Log.i(LOG_TAG, "postexec variable: " + earthquakes.size());
+            inflater(earthquakes);
+
+
+        }
+    }
+
+
 }

@@ -1,22 +1,16 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.graphics.drawable.GradientDrawable;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by d on 8/7/2017.
@@ -26,7 +20,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
 
-    public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquakes) {
+    public EarthquakeAdapter(Activity context, List<Earthquake> earthquakes) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
