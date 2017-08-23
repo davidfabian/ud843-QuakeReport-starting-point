@@ -17,7 +17,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.android.quakereport.EarthquakeActivity.LOG_TAG;
 
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
@@ -27,6 +26,7 @@ public final class QueryUtils {
 
     //modify this according to API documentation for different results
     private static final String USGS_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+    private static final String LOG_TAG = QueryUtils.class.getName();
     //JSON_RESPONSE static to used through the class
     private static String JSON_RESPONSE = "";
 
@@ -125,13 +125,13 @@ public final class QueryUtils {
                 JSONObject currentQuake = features.getJSONObject(i);
                 JSONObject properties = currentQuake.getJSONObject("properties");
                 double mag = properties.getDouble("mag");
-                Log.i("magnitude", "mag " + mag);
+
                 String loc = properties.getString("place");
-                Log.i("location", "loc " + loc);
+
                 long time = properties.getLong("time");
-                Log.i("time", "tim " + time);
+
                 String web = properties.getString("url");
-                Log.i("web", "www " + web);
+
                 earthquakes.add(new Earthquake(mag, loc, time, web));
 
             }
