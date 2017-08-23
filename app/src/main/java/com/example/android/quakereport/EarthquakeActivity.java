@@ -1,8 +1,11 @@
 package com.example.android.quakereport;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,19 +23,17 @@ public class EarthquakeActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<Earthquake>> {
 
     private static final String LOG_TAG = EarthquakeActivity.class.getName();
-
     /**
      * URL for earthquake data from the USGS dataset
      */
     private static final String USGS_REQUEST_URL =
             "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
-
     /**
      * Constant value for the earthquake loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int EARTHQUAKE_LOADER_ID = 1;
-
+    private String statusmessage;
     /**
      * Adapter for the list of earthquakes
      */
@@ -42,8 +44,19 @@ public class EarthquakeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        if (isConnected) {
+            statusmessage = getString(R.string.noloc);
+        } else {
+            statusmessage = getString(R.string.nointernet);
+        }
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
+
         earthquakeListView.setEmptyView(findViewById(R.id.empty_state));
 
         // Create a new adapter that takes an empty list of earthquakes as input
@@ -90,9 +103,14 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
-        // Clear the adapter of previous earthquake data
+        Log.i(LOG_TAG, "load finished");
+
         TextView emptystate = (TextView) findViewById(R.id.empty_state);
-        emptystate.setText("No earthquake data received");
+        emptystate.setText(statusmessage);
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.loading_spinner);
+        progressBar.setVisibility(View.GONE);
+
         mAdapter.clear();
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
@@ -105,7 +123,6 @@ public class EarthquakeActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
         // Loader reset, so we can clear out our existing data.
-        Log.i(LOG_TAG, "loader reset");
         mAdapter.clear();
     }
 }

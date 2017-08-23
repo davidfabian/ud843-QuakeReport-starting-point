@@ -16,4 +16,6 @@
 <resources>
     <string name="app_name">Quake Report</string>
     <string name="noloc">Near the</string>
+    <string name="noquake">No Earthquake data found</string>
+    <string name="nointernet">No internet connection</string>
 </resources>

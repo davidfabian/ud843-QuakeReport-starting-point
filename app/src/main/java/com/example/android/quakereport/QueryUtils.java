@@ -102,6 +102,7 @@ public final class QueryUtils {
 
     //returns the list of earthquakes defined by the USGS_URL
     public static List<Earthquake> extractEarthquakes() {
+
         //prepare url
         URL url = createUrl(USGS_URL);
         // get json data from USGS with makeHttpRequest
